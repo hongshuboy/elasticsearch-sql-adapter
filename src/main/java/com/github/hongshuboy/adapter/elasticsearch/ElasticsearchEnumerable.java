@@ -22,7 +22,7 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
     private static final FastDateFormat TIME_FORMAT_TIMESTAMP;
 
     static {
-        final TimeZone gmt = TimeZone.getTimeZone("GMT");
+        final TimeZone gmt = TimeZone.getTimeZone("UTC+8");
         TIME_FORMAT_DATE = FastDateFormat.getInstance("yyyy-MM-dd", gmt);
         TIME_FORMAT_TIME = FastDateFormat.getInstance("HH:mm:ss", gmt);
         TIME_FORMAT_TIMESTAMP =
@@ -42,7 +42,7 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
 
     class ElasticsearchEnumerator implements Enumerator<Object[]> {
         private final SearchHit[] hits;
-        private int cursor;
+        private int cursor = -1;
         private final int limit;
 
         @Override
@@ -61,8 +61,7 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
 
         @Override
         public boolean moveNext() {
-            cursor++;
-            return cursor <= limit - 1;
+            return ++cursor <= limit - 1;
         }
 
         @Override
@@ -87,7 +86,7 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
         }
     }
 
-    abstract class RowConverter<E> {
+    abstract static class RowConverter<E> {
         abstract E convertRow(String[] rows);
     }
 
@@ -108,7 +107,8 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
 
         /**
          * 单列类型转换
-         * @param fieldType 类型
+         *
+         * @param fieldType    类型
          * @param originString 转换前的字符量
          * @return 转换后的值
          */
@@ -182,6 +182,5 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
                     return originString;
             }
         }
-
     }
 }
