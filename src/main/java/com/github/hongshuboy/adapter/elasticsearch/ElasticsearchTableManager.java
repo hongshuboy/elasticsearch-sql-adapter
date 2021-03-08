@@ -17,7 +17,7 @@ public class ElasticsearchTableManager {
      *
      * @param index    elasticsearch
      * @param alias    table alias name
-     * @param columns   columns in index that you want to in table
+     * @param columns  columns in index that you want to in table
      * @param sqlTypes table column types
      */
     public static void addIndex(String index, String alias, List<String> columns, List<FieldType> sqlTypes) {

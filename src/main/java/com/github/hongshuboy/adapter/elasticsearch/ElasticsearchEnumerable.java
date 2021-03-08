@@ -66,7 +66,6 @@ public class ElasticsearchEnumerable extends AbstractEnumerable<Object[]> {
 
         @Override
         public void reset() {
-
         }
 
         @Override
