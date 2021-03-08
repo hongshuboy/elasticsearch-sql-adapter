@@ -2,6 +2,11 @@
 
 `ElasticSearch`SQL查询适配器，为`Elasticsearch`提供SQL查询的功能。支持跨`Elasticsearch`集群查询。通过代码简单配置，使项目根据`Elasticsearch`的`index`映射为`SQL` `Table`
 
+
+| License                                        | CodeBeat                                                     | Language                                                     | Build                                                        | Size                                                         | Contributors                                                 |
+| ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![Hex.pm](https://img.shields.io/hexpm/l/plug) | [![codebeat badge](https://codebeat.co/badges/419796f3-4288-4c5c-8398-bcbff3aa844c)](https://codebeat.co/projects/github-com-hongshuboy-elasticsearch-sql-adapter-master) | ![language java](<https://img.shields.io/badge/java-v1.8-blue>) | ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hongshuboy/elasticsearch-sql-adapter) | ![GitHub repo size](https://img.shields.io/github/repo-size/hongshuboy/elasticsearch-sql-adapter) | ![GitHub contributors](https://img.shields.io/github/contributors/hongshuboy/elasticsearch-sql-adapter) |
+
 ## 效果展示
 
 在`Elasticsearch`上创建一个`person`索引，有四个字段`name`,`age`,`address`,`room`
