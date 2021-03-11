@@ -1,4 +1,4 @@
-# :gift:使用指南
+# :memo:使用指南
 
 `ElasticSearch`SQL查询适配器，为`Elasticsearch`提供SQL查询的功能。支持完整的SQL查询和跨`Elasticsearch`集群查询。通过代码简单配置，使项目根据`Elasticsearch`的`index`映射为`Table`。
 
