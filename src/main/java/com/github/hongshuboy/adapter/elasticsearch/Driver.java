@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public final class Driver extends org.apache.calcite.jdbc.Driver {
-    public static final String CONNECT_STRING_PREFIX = "jdbc:hongshuboy:";
+    @SuppressWarnings("all")
+    private static final String CONNECT_STRING_PREFIX = "jdbc:hongshuboy:";
 
     static {
         new Driver().register();

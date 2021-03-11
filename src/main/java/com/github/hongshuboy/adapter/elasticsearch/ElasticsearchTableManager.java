@@ -20,15 +20,15 @@ public class ElasticsearchTableManager {
      * @param columns  columns in index that you want to in table
      * @param sqlTypes table column types
      */
-    public static void addIndex(String index, String alias, List<String> columns, List<FieldType> sqlTypes) {
+    public static void createTable(String index, String alias, List<String> columns, List<FieldType> sqlTypes) {
         Objects.requireNonNull(defaultESHost, "es host must be set first, use setDefaultESHostAndPort");
-        addIndex(defaultESHost, defaultESPort, index, alias, columns, sqlTypes);
+        createTable(defaultESHost, defaultESPort, index, alias, columns, sqlTypes);
     }
 
     /**
-     * @see ElasticsearchTableManager#addIndex(java.lang.String, java.lang.String, java.util.List, java.util.List)
+     * @see ElasticsearchTableManager#createTable(java.lang.String, java.lang.String, java.util.List, java.util.List)
      */
-    public static void addIndex(String esHost, int port, String index, String alias, List<String> columns, List<FieldType> sqlTypes) {
+    public static void createTable(String esHost, int port, String index, String alias, List<String> columns, List<FieldType> sqlTypes) {
         assert columns.size() == sqlTypes.size();
         tableMetas.add(new TableMeta(esHost, port, index, alias, columns, sqlTypes));
     }

@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class ElasticsearchSQLTest {
@@ -30,7 +31,9 @@ public class ElasticsearchSQLTest {
     public void testElasticsearchSQL() throws Exception {
         Class.forName("com.github.hongshuboy.adapter.elasticsearch.Driver");
         ElasticsearchTableManager.setDefaultESHostAndPort("ihongshu.top", 9200);
-        ElasticsearchTableManager.addIndex("person", "person", Arrays.asList("name", "age", "address", "room"), Arrays.asList(FieldType.STRING, FieldType.INT, FieldType.STRING, FieldType.INT));
+        List<String> columns = Arrays.asList("name", "age", "address", "room");
+        List<FieldType> types = Arrays.asList(FieldType.STRING, FieldType.INT, FieldType.STRING, FieldType.INT);
+        ElasticsearchTableManager.createTable("person", "person", columns, types);
         Connection connection = DriverManager.getConnection("jdbc:hongshuboy:lex=JAVA");
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(SQL);
