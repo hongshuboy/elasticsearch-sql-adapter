@@ -1,4 +1,4 @@
-# 使用指南
+# :gift:使用指南
 
 `ElasticSearch`SQL查询适配器，为`Elasticsearch`提供SQL查询的功能。支持完整的SQL查询和跨`Elasticsearch`集群查询。通过代码简单配置，使项目根据`Elasticsearch`的`index`映射为`Table`。
 
@@ -7,7 +7,7 @@
 | ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![Hex.pm](https://img.shields.io/hexpm/l/plug) | [![codebeat badge](https://codebeat.co/badges/419796f3-4288-4c5c-8398-bcbff3aa844c)](https://codebeat.co/projects/github-com-hongshuboy-elasticsearch-sql-adapter-master) | ![language java](<https://img.shields.io/badge/java-v1.8-blue>) | ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hongshuboy/elasticsearch-sql-adapter) | ![GitHub repo size](https://img.shields.io/github/repo-size/hongshuboy/elasticsearch-sql-adapter) | ![GitHub contributors](https://img.shields.io/github/contributors/hongshuboy/elasticsearch-sql-adapter) |
 
-## 效果展示
+## :rocket:效果展示
 
 在`Elasticsearch`上创建一个`person`索引，有四个字段`name`,`age`,`address`,`room`
 
@@ -25,9 +25,9 @@ select name,age,address,room from person
 | meijia       | 24   | shanghai | 3601 |
 | guangu       | 26   | dongjing | 3602 |
 
-**Java使用方法**
+:rocket:**使用方法**
 
-在`JVM`进程内，先使用`ElasticsearchTableManager`设置要使用SQL管理的`index`，可增加不同`Elasticsearch`集群的`index`实现跨集群查询
+在获得`Connection`之前先使用`ElasticsearchTableManager`设置要使用SQL管理的`index`索引，且通过`ElasticsearchTableManager`可动态的增加`Table`，这个过程是线程安全的。
 
 ```java
 //注册Driver
@@ -51,7 +51,7 @@ ResultSet resultSet = statement.executeQuery("select * from person");
 printResultSet(resultSet);
 ```
 
-看一下`createTable`方法
+:ballot_box_with_check: 看一下`createTable`方法
 
 - `index`：`elasticsearch` `index`
 
@@ -80,7 +80,7 @@ void createTable(String index,
 
 *因为Elasticsearch不推荐，也以实际行动移除了type，所以这里考虑后还是使用`index`对应一个`SQL`表的对应关系*
 
-**跨Elasticsearch集群**
+:white_check_mark: **跨Elasticsearch集群**
 
 如果单集群添加表，为了避免麻烦，可以提前设置默认的集群连接，在不指定`Elasticsearch`连接地址的情况下，都会默认使用这里设置的连接地址
 
@@ -100,7 +100,7 @@ public static void createTable(String esHost, int port, String index, String ali
 }
 ```
 
-**关于Schema**
+:white_check_mark:**关于Schema**
 
 查询时不需要指定数据库，直接使用`table` `name`即可
 
@@ -110,7 +110,7 @@ public static void createTable(String esHost, int port, String index, String ali
 select name,age,address,room from person
 ```
 
-**条件查询**
+:white_check_mark:**条件查询**
 
 ```sql
 select * from person where age > 25
@@ -123,7 +123,7 @@ select * from person where age > 25
 | zengxiaoxian | 26   | shanghai | 3601 |
 | guangu       | 26   | dongjing | 3602 |
 
-**group by**
+:white_check_mark:**group by**
 
 
 ```sql
@@ -136,9 +136,9 @@ select age,count(*) as num from person group by age
 | 25   | 2    |
 | 26   | 3    |
 
-*其他如`join`查询等也都支持，可自行测试。*
+:rocket: *其他如`join`查询等也都支持，可自行测试。*
 
-## 作者 Author
+## :ok_man:作者 Author
 
 弘树丶
 
@@ -146,7 +146,7 @@ select age,count(*) as num from person group by age
 
 Email:hongshuboy@gmail.com
 
-## 版权说明 License 
+## :copyright:版权说明 License 
 
 本项目使用**Apache License 2.0**授权许可，详情请参阅 ***\LICENSE*** 和 ***\NOTICE***
 
