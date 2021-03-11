@@ -80,7 +80,6 @@ public class ElasticsearchQueryBuilder {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private <T extends BaseCondition> T prepareCondition(RexNode filter, Class<T> cls) throws Exception {
         final RexCall call = (RexCall) filter;
         RexNode left = call.getOperands().get(0);
@@ -91,8 +90,8 @@ public class ElasticsearchQueryBuilder {
         if (left instanceof RexInputRef
                 && right instanceof RexLiteral) {
             final int index = ((RexInputRef) left).getIndex();
-            Constructor<?> constructor = cls.getConstructor(String.class, Object.class);
-            return (T) constructor.newInstance(tableMeta.fields.get(index), ((RexLiteral) right).getValue2());
+            Constructor<T> constructor = cls.getConstructor(String.class, Object.class);
+            return constructor.newInstance(tableMeta.fields.get(index), ((RexLiteral) right).getValue2());
         }
         return null;
     }
